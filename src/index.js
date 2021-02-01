@@ -3,10 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {POPULAR_ACTORS_DATA} from './mocks/popular_actors_data';
+import {getCast} from './utils';
+
+// not convinced that this is the best way to source non-movie actors
+// so not bothering to replace it with an api call
+const getPopularActors = () => getCast(POPULAR_ACTORS_DATA.results);
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App defaultActors={getPopularActors()}/>
   </React.StrictMode>,
   document.getElementById('root')
 );

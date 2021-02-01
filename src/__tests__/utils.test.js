@@ -1,6 +1,7 @@
 import { formatMovies, formatTitle, getCast } from "../utils";
 import { FORMATTED_DATA, SEARCH_MOVIES_QUERY_PRIDE_AND_PREJUDICE, NO_RESULTS_FOUND } from "../mocks/search_movie_data";
 import {BEE_MOVIE_CAST_AND_CREW, BEE_MOVIE_CAST} from "../mocks/movie_cast_data";
+import {POPULAR_ACTORS_DATA, POPULAR_ACTORS_LIST} from "../mocks/popular_actors_data";
 
 describe("format movies", () => {
   test("formats movies after searching", () => {
@@ -43,5 +44,9 @@ test('getCast returns a list of all actors in a movie', () => {
   expect(results).toEqual(BEE_MOVIE_CAST);
 });
 
+test('getCast returns list of most popular actors names', () => {
+  const results = getCast(POPULAR_ACTORS_DATA.results);
+  expect(results).toEqual(POPULAR_ACTORS_LIST);
+});
 
 
