@@ -17,3 +17,7 @@ export const formatTitle = (title, date) => {
   const year = date.substring(0, 4);
   return `${title} (${year})`;
 };
+
+export const getCast = (cast) => {
+  return cast.map(actor => actor.name)}
+  ;

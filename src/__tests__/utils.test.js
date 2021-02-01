@@ -1,5 +1,6 @@
-import { formatMovies, formatTitle } from "../utils";
+import { formatMovies, formatTitle, getCast } from "../utils";
 import { FORMATTED_DATA, SEARCH_MOVIES_QUERY_PRIDE_AND_PREJUDICE, NO_RESULTS_FOUND } from "../mocks/search_movie_data";
+import {BEE_MOVIE_CAST_AND_CREW, BEE_MOVIE_CAST} from "../mocks/movie_cast_data";
 
 describe("format movies", () => {
   test("formats movies after searching", () => {
@@ -35,9 +36,12 @@ describe('format title', () => {
   
     expect(result).toEqual(expected);
   });
-
-  test('it does not break with invalid input', () => {
-
-  });
 });
+
+test('getCast returns a list of all actors in a movie', () => {
+  const results = getCast(BEE_MOVIE_CAST_AND_CREW.cast);
+  expect(results).toEqual(BEE_MOVIE_CAST);
+});
+
+
 

@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import SearchBar from "../components/SearchBar";
 import SearchBarOptions from "../components/SearchBarOptions";
 import Dropdown from "react-bootstrap/Dropdown";
-import { searchMovies } from "../services";
-import { formatMovies } from "../utils";
+import { searchMovies, getMovieCast } from "../services";
+import { formatMovies, getCast } from "../utils";
 
 class PickMoviePage extends Component {
   constructor(props) {
@@ -23,20 +23,31 @@ class PickMoviePage extends Component {
     this.props
       .searchMovies(value)
       .then((data) => formatMovies(data))
-      .then((data) => 
-        this.setState({ options: data }))
+      .then((data) => this.setState({ options: data }))
       .catch((error) => {
         this.setState({ options: [] });
       });
   };
 
-  handleMovieSelection = (id) => {};
+  handleClick = (e, id) => {
+    this.props
+      .getMovieCast(id)
+      .then((data) => getCast(data.cast))
+      .then((cast) => {
+        const movieTitle = e.target.text;
+        this.props.onMovieSelection(cast, movieTitle);
+      })
+      .catch((error) => console.log(error));
+  };
 
   render() {
     return (
       <Dropdown>
         <SearchBar onChange={this.handleChange} />
-        <SearchBarOptions movies={this.state.options} />
+        <SearchBarOptions
+          movies={this.state.options}
+          onClick={this.handleClick}
+        />
       </Dropdown>
     );
   }
@@ -44,10 +55,14 @@ class PickMoviePage extends Component {
 
 PickMoviePage.propTypes = {
   searchMovies: PropTypes.func,
+  getMovieCast: PropTypes.func,
+  onMovieSelection: PropTypes.func,
 };
 
 PickMoviePage.defaultProps = {
   searchMovies: searchMovies,
+  getMovieCast: getMovieCast,
+  onMovieSelection: () => {},
 };
 
 export default PickMoviePage;
