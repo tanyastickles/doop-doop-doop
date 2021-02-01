@@ -1,32 +1,10 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import SearchBar from "../components/SearchBar";
+import SearchBarOptions from "../components/SearchBarOptions";
 import Dropdown from "react-bootstrap/Dropdown";
 import { searchMovies } from "../services";
 import { formatMovies } from "../utils";
-
-// const handleChange = (event) =>  {
-//     const value = event.target.value;
-
-//     if (!value) {
-//         return [];
-//     }
-
-// }
-
-// const handleChange = ({target: {value}}) =>
-//   (value ? searchMovies(value) : [])
-//     .then((res) => {
-//       const formatted = formatMovies(res);
-//     })
-//     .catch((error) => console.log(error));
-
-// const PickMoviePage = () => {
-//   return (
-//     <Dropdown>
-//       <SearchBar onChange={handleChange} />
-//     </Dropdown>
-//   );
-// };
 
 class PickMoviePage extends Component {
   constructor(props) {
@@ -42,23 +20,34 @@ class PickMoviePage extends Component {
       this.setState({ options: [] });
     }
 
-    searchMovies(value)
+    this.props
+      .searchMovies(value)
       .then((data) => formatMovies(data))
-      .then((data) => {
-          console.log(data);
-          this.setState({ options: data })})
+      .then((data) => 
+        this.setState({ options: data }))
       .catch((error) => {
         this.setState({ options: [] });
       });
   };
 
+  handleMovieSelection = (id) => {};
+
   render() {
     return (
       <Dropdown>
         <SearchBar onChange={this.handleChange} />
+        <SearchBarOptions movies={this.state.options} />
       </Dropdown>
     );
   }
 }
+
+PickMoviePage.propTypes = {
+  searchMovies: PropTypes.func,
+};
+
+PickMoviePage.defaultProps = {
+  searchMovies: searchMovies,
+};
 
 export default PickMoviePage;

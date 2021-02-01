@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import Dropdown from "react-bootstrap/Dropdown";
 
 export const Option = ({ id, title, onClick }) => (
-  <Dropdown.Item key={id} onClick={(id) => onClick(id)}>
+  <Dropdown.Item onClick={(id) => onClick(id)}>
     {title}
   </Dropdown.Item>
 );
@@ -19,7 +19,7 @@ const SearchBarOptions = ({ movies, onClick }) => {
     <>
       {!!movies &&
         movies.map((movie) => (
-          <Option id={movie.id} title={movie.title} onClick={onClick} />
+          <Option key={movie.id} id={movie.id} title={movie.title} onClick={onClick} />
         ))}
     </>
   );
