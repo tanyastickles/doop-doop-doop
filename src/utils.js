@@ -5,6 +5,7 @@ export const formatMovies = (data) => {
 
   return data.results.map((movie) => {
     return {
+      id: movie.id,
       original_language: movie.original_language,
       title: formatTitle(movie.title, movie.release_date),
       poster_path: movie.poster_path,

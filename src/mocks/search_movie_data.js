@@ -47,3 +47,18 @@ export const NO_RESULTS_FOUND = {
   total_pages: 0,
   total_results: 0,
 };
+
+export const FORMATTED_DATA = [
+  {
+    id: 4348,
+    original_language: "en",
+    title: "Pride & Prejudice (2005)",
+    poster_path: "/sZEXhhnEKh9hjzoiIi9XgHGqtYm.jpg",
+  },
+  {
+    id: 58431,
+    original_language: "en",
+    title: "Pride and Prejudice and Zombies (2016)",
+    poster_path: "/jsJlOhVHiz1xXr36616EI8tJ4b2.jpg",
+  },
+];
