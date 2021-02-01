@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import Dropdown from "react-bootstrap/Dropdown";
 
 export const Option = ({ id, title, onClick }) => (
-  <Dropdown.Item onClick={(id) => onClick(id)}>
+  <Dropdown.Item onClick={(e) => {onClick(e, id)}}>
     {title}
   </Dropdown.Item>
 );

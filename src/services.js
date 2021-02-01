@@ -16,7 +16,7 @@ const searchMovieUrl = (query) =>
   `${BASE_URL}/search/movie?${API_KEY}&query=${query}&language=en-US&page=1&adult=false`;
 
 const movieCreditsUrl = (movieId) =>
-  `${BASE_URL}/${movieId}/credits?${API_KEY}&language=en-US`;
+  `${BASE_URL}/movie/${movieId}/credits?${API_KEY}&language=en-US`;
 
 const popularPeopleURL = () =>
   `https://api.themoviedb.org/3/person/popular?${API_KEY}&language=en-US&page=1`;
@@ -29,6 +29,6 @@ export const searchMovies = (query) => {
   return fetch(searchMovieUrl(query)).then((response) => response.json());
 };
 
-const getMovie = (movieId) => {
-  fetch(movieCreditsUrl(movieId)).then((response) => response.json());
+export const getMovieCast = (movieId) => {
+  return fetch(movieCreditsUrl(movieId)).then((response) => response.json());
 };
