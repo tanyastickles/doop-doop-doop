@@ -1,9 +1,11 @@
 import {shallow} from "enzyme";
-import PickMovie from "../components/PickMovie";
+import PickMoviePage from "../pages/PickMoviePage";
+import SearchBar from "../components/SearchBar";
 
 test('component exists and renders appropriate children', () => {
-    const wrapper = shallow(<PickMovie />);
+    const wrapper = shallow(<PickMoviePage />);
     wrapper.exists();
+    expect(wrapper.find(SearchBar).length).toBe(1);
 });
 
 
